@@ -10,6 +10,13 @@ namespace tdop
 
         private Token[] tokens;
 
+        public Parser()
+        {
+            symbolTable = new Dictionary<string, Symbol>();
+
+            GetSymbol("number", (t) => t);
+        }
+
 
         public List<TreeNode> Parse(Token[] tokens)
         {
@@ -52,6 +59,7 @@ namespace tdop
                 left = t.LeftDenotativeFunction(left);
             }
             return left;
+
         }
 
         TreeNode InterpretToken(Token token)
@@ -107,6 +115,7 @@ namespace tdop
         public Func<TreeNode, TreeNode> NullDenotativeFunction { get; set; }
         
         public Func<TreeNode, TreeNode> LeftDenotativeFunction { get; set; }
+
 
     }
 
